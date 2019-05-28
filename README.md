@@ -15,6 +15,7 @@ Interactive map that allows women to access and log information about cities in 
 5. Create logs (full crud)
 6. Search Bar
 7. User Profile Page
+8. Fun logo and name
 
 
 
