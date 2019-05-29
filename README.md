@@ -11,11 +11,13 @@ Interactive map that allows women to access and log information about cities in 
 1. Basic set up of Django Project/App
 2. Create models (user & travel log)
 3. Embed google map
-4. Sign in/Authentication 
-5. Create logs (full crud)
+4. Create logs (full crud)
+5. Sign in/Authentication 
 6. Search Bar
 7. User Profile Page
 8. Fun logo and name
+
+api key: AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y
 
 
 
