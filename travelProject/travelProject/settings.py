@@ -121,3 +121,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # login and logout redirect
+
+# Google Api Key
+# GOOGLE_MAPS_API_KEY = 'AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y'
+
+
