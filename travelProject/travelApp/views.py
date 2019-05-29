@@ -3,8 +3,9 @@ from django.shortcuts import render
 
 
 def index(request):
-    # map = new google.maps.Map(document.getElementById('map'), {
-    #     center: {lat: -34.397, lng: 150.644},
+    # map = new google.maps.Map
+    # ({
+    #     center: {lat: -35.1495, lng: 90.0490},
     #     zoom: 8
     # })
     context = {
