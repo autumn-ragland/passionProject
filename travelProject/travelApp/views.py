@@ -3,12 +3,15 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .forms import UserForm, UserModel
 import googlemaps
+from uuid import uuid4 as places_autocomplete_session_token
+from googlemaps import convert
 
 # find a way to securely pass my key so I don't get charged
 gmaps = googlemaps.Client(key='AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y')
 
 
 def index(request):
+
     return render(request, 'travelApp/index.html')
 
 
@@ -30,6 +33,7 @@ def newUser(request):
     # render user form page
     return render(request, 'travelApp/newUser.html', context)
 
+
 # test request to do a simple query on the API
 def test(request):
     geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
@@ -49,3 +53,14 @@ def log_details(request):
 # profile page
 def profile(request):
     return render(request, 'travelApp/profile.html')
+
+
+# absolutely not working
+def find_place(client, input, input_type):
+
+    params = {"hotel": input, "string": input_type}
+
+    return client._request("/maps/api/place/findplacefromtext/json", params)
+
+
+
