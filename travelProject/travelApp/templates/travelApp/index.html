@@ -1,30 +1,12 @@
 {% extends 'travelApp/base.html' %}
 
 {% block content %}
-<h4>Placeholder Map</h4>
+<h4>Simple Embedded Map</h4>
 <div class="mapouter">
     <div class="gmap_canvas">
         <iframe width=100% height=100% id="gmap_canvas" src="https://www.google.com/maps/embed/v1/view?zoom=9&center=35.1495,-90.0490&key=AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y" allowfullscreen frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
     </div>
     <style>.mapouter{position:relative;text-align:right;height:85vh;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:100%;width:100%;}</style>
 </div>
-
-<!--<div id="map"></div>-->
-<!--<script>-->
-<!--    // Initialize and add the map-->
-<!--    function initMap() {-->
-<!--        // The location of Uluru-->
-<!--        var uluru = {lat: -25.344, lng: 131.036};-->
-<!--        // The map, centered at Uluru-->
-<!--        var map = new google.maps.Map(-->
-<!--            document.getElementById('map'), {zoom: 4, center: uluru});-->
-<!--        // The marker, positioned at Uluru-->
-<!--        var marker = new google.maps.Marker({position: uluru, map: map});-->
-<!--    }-->
-<!--    initMap();-->
-<!--</script>-->
-<!--<script async defer-->
-<!--        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y&callback=initMap">-->
-<!--</script>-->
 
 {% endblock %}
