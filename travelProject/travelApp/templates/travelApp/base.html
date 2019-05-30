@@ -4,15 +4,46 @@
     <meta charset="UTF-8">
     <title>Travel Log</title>
     {% load static %}
-<!--    <link rel="stylesheet" href="../../static/wiki_app/css/bootstrap.css">-->
-<!--    <link rel="stylesheet" href="../../static/travelApp/css/travelCSS.css">-->
+    <link rel="stylesheet" href="../../static/travelApp/css/bootstrap.css">
+    <link rel="stylesheet" href="../../static/travelApp/css/base.css">
 </head>
 <body>
 <nav>
-    <h3>This is a nav bar placeholder</h3>
-</nav>
+    {% if request.user.is_authenticated %}
+    <h3>{{request.user}}</h3>
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+    </ul>
 
+
+    {% else %}
+    <h3 class="justify-content-center">Welcome</h3>
+    <ul class="nav justify-content-center">
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'newUser' %}">New User</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+    </ul>
+
+    <br>
+    {% endif %}
+</nav>
 {% block content %}
+
 
 {% endblock %}
 </body>

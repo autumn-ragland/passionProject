@@ -123,6 +123,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # login and logout redirect
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 
 

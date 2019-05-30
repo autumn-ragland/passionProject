@@ -10,4 +10,7 @@ urlpatterns = [
     path('location_details/', views.location_details, name='location_details'),
     # log details route
     path('log_details/', views.log_details, name='log_details'),
+    # profile page
+    path('profile/', views.profile, name='profile'),
+    path('newUser/', views.newUser, name='newUser'),
 ]

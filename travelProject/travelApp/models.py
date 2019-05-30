@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 # django user model
 class UserModel(models.Model):
-    name = models.CharField(max_length=500, default='')
+    username = models.CharField(max_length=500, default='')
     password = models.CharField(max_length=500, default='')
     email = models.EmailField(default='')
     user_fk = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
