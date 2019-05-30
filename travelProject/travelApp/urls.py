@@ -12,5 +12,6 @@ urlpatterns = [
     path('log_details/', views.log_details, name='log_details'),
     # profile page
     path('profile/', views.profile, name='profile'),
+    # new user path
     path('newUser/', views.newUser, name='newUser'),
 ]
