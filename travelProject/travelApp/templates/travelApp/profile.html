@@ -2,8 +2,17 @@
 
 {% block content %}
 <h2>{{ request.user }}'s Travel Log</h2>
+<a href="{% url 'newLog' %}"><button class="btn-primary">Add a Log</button></a>
 <hr/>
 
-<h2>You have no logs</h2>
+{% if myLogs %}
+    {% for logs in myLogs %}
+        <p>Location: {{logs.location}}</p>
+        <p>Summary: {{logs.summary}}</p>
+        <hr>
+    {% endfor %}
+{% else %}
+    <h3>You have no logs</h3>
+{% endif %}
 
 {% endblock %}

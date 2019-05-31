@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from .forms import UserForm, UserModel
+from .forms import UserForm, UserModel, LogForm, LocationLog
 import googlemaps
 
 
@@ -9,6 +9,7 @@ import googlemaps
 gmaps = googlemaps.Client(key='AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y')
 
 
+# landing page
 def index(request):
     return render(request, 'travelApp/index.html')
 
@@ -32,25 +33,67 @@ def newUser(request):
     return render(request, 'travelApp/newUser.html', context)
 
 
+# create a new log
+def newLog(request):
+    # for logged in users
+    if request.user.is_authenticated:
+        # get empty log form
+        form = LogForm(request.POST or None)
+        # determine logged in user
+        current_user = UserModel.objects.get(username=request.user)
+        if request.method == 'POST':
+            # on submit add log to model with logged in user fk
+            LocationLog.objects.create(location=request.POST['location'],
+                                       location_lat=request.POST['location_lat'],
+                                       location_long=request.POST['location_long'],
+                                       date_of_visit=request.POST['date_of_visit'],
+                                       summary=request.POST['summary'],
+                                       safety=request.POST['safety'],
+                                       affordability=request.POST['affordability'],
+                                       accessibility=request.POST['accessibility'],
+                                       userModel_fk=current_user)
+            # on submit render profile page
+            return redirect('profile')
+        # pass empty log form
+        context = {
+            'form': form
+        }
+    # for users not logged in
+    else:
+        form = ''
+        context = {
+            'form': form
+        }
+    # render new log form page
+    return render(request, 'travelApp/newLog.html', context)
+
+
+# list logs (currently lists all logs)
+def myLogs(request):
+    locationLogs = LocationLog.objects.all()
+    context = {
+        'myLogs': locationLogs
+    }
+    print(locationLogs)
+    return render(request, 'travelApp/profile.html', context)
+
+
 # test request to do a simple query on the API
 def test(request):
     geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
     return HttpResponse(geocode_result)
 
+# todo: Functions below this comment don't work or are very incomplete
+
 
 # location details page
-def location_details(request):
+def locationDetails(request):
     return render(request, 'travelApp/locationDetails.html')
 
 
 # log details page
-def log_details(request):
+def logDetails(request):
     return render(request, 'travelApp/logDetails.html')
-
-
-# profile page
-def profile(request):
-    return render(request, 'travelApp/profile.html')
 
 
 # absolutely not working
