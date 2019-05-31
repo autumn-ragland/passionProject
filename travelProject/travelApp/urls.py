@@ -15,5 +15,6 @@ urlpatterns = [
     # new user path
     path('newUser/', views.newUser, name='newUser'),
     # places api hit attempt
-    # path('find_place/<str:input>/<str:input_type>/', views.find_place, name='find_place'),
+    # path('find_place/', views.find_place, name='find_place'),
+    path('testMarker/', views.testMarker, name='testMarker'),
 ]

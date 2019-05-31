@@ -3,15 +3,13 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .forms import UserForm, UserModel
 import googlemaps
-from uuid import uuid4 as places_autocomplete_session_token
-from googlemaps import convert
+
 
 # find a way to securely pass my key so I don't get charged
 gmaps = googlemaps.Client(key='AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y')
 
 
 def index(request):
-
     return render(request, 'travelApp/index.html')
 
 
@@ -57,10 +55,23 @@ def profile(request):
 
 # absolutely not working
 def find_place(client, input, input_type):
-
-    params = {"hotel": input, "string": input_type}
-
+    params = {"input": input, "inputtype": input_type}
     return client._request("/maps/api/place/findplacefromtext/json", params)
+
+
+# todo: MUST be able to access google.maps.Marker object to create markers...
+def testMarker(request):
+    myLatLng = {'lat': -25.363, 'lng': 131.044}
+    map = googlemaps.maps.Map.objects.create({
+        'zoom': 4,
+        'center': myLatLng
+    })
+    marker = googlemaps.maps.Marker.objects.create({
+        'position': myLatLng,
+        'map': map,
+        'title': 'Hello World!'
+    })
+    return HttpResponse(marker)
 
 
 
