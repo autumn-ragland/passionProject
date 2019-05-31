@@ -23,8 +23,10 @@ urlpatterns = [
     # test route to do a simple API query
     path('test/', views.test, name='test'),
 
+    # todo: routes below this comment don't work
+
     # places api hit attempt
-    # path('find_place/', views.find_place, name='find_place'),
+    path('find_place/', views.find_place, name='find_place'),
     # test route to create a marker
-    # path('testMarker/', views.testMarker, name='testMarker'),
+    path('testMarker/', views.testMarker, name='testMarker'),
 ]
