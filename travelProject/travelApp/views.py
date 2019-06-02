@@ -87,9 +87,10 @@ def myLogs(request):
     return render(request, 'travelApp/profile.html', context)
 
 
-# test request to do a simple query on the API
-def test(request):
-    geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
+# search bar submit form
+def searchLocation(request):
+    searchItem = request.POST['searchBar']
+    geocode_result = gmaps.geocode(searchItem)
     return HttpResponse(geocode_result)
 
 
@@ -111,20 +112,6 @@ def find_place(client, input, input_type):
     params = {"input": input, "inputtype": input_type}
     return client._request("/maps/api/place/findplacefromtext/json", params)
 
-
-# todo: MUST be able to access google.maps.Marker object to create markers...
-def testMarker(request):
-    myLatLng = {'lat': -25.363, 'lng': 131.044}
-    map = googlemaps.maps.Map.objects.create({
-        'zoom': 4,
-        'center': myLatLng
-    })
-    marker = googlemaps.maps.Marker.objects.create({
-        'position': myLatLng,
-        'map': map,
-        'title': 'Hello World!'
-    })
-    return HttpResponse(marker)
 
 
 

@@ -1,7 +1,6 @@
 html, body{
     height: 90%;
     margin: 1%;
-    padding: 0;
 }
 
 h3{
@@ -10,5 +9,5 @@ h3{
 }
 
 #map{
-    height: 90%;
+    height: 80%;
 }

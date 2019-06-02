@@ -20,13 +20,12 @@ urlpatterns = [
     # add new log
     path('newLog/', views.newLog, name='newLog'),
 
-    # test route to do a simple API query
-    path('test/', views.test, name='test'),
+    # search bar
+    path('searchLocation/', views.searchLocation, name='searchLocation'),
 
     # todo: routes below this comment don't work
 
     # places api hit attempt
     path('find_place/', views.find_place, name='find_place'),
-    # test route to create a marker
-    path('testMarker/', views.testMarker, name='testMarker'),
+
 ]

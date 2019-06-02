@@ -4,6 +4,12 @@
 
 <h4>Simple Embedded Map</h4>
 
+<form class="searchBar" action="{% url 'searchLocation' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="searchBar" placeholder="search for a location...">
+    <button type="submit" class="btn btn-light btn-sm">Search</button>
+</form>
+
 <div id="map"></div>
 
 <script>
