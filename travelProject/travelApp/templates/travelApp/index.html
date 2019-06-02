@@ -7,26 +7,38 @@
 <div id="map"></div>
 
 <script>
-    let map;
+
     function initMap() {
 
         let myLatLng = {lat: 35, lng: -90};
 
-
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 35.1495, lng: -90.0490},
-            zoom: 10
+            zoom: 15
         });
-        console.log("Init Map Function Has Run");
 
-        // var marker = new google.maps.Marker({
-        //     position: myLatLng,
-        //     map: map,
-        //     title: 'Hello World!'
-        // });
-        // console.log("New Marker Function Has Run");
-
+        setMarkers(map)
     }
+
+    myMarkers = [
+        ['Crosstown Concourse', 35.1465, -90.0490],
+        ['Memphis Pyramid', 35.147, -90.050],
+        ['Beale Street', 35.148, -90.048],
+    ];
+
+    function setMarkers(map){
+        for (let i = 0; i < myMarkers.length; i++) {
+            let location = myMarkers[i];
+            let marker = new google.maps.Marker({
+                position: {lat: location[1], lng: location[2]},
+                map: map,
+                title: location[0],
+                draggable: true,
+            });
+        }
+    }
+
+
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y&callback=initMap"
