@@ -15,7 +15,7 @@ urlpatterns = [
     path('locationDetails/', views.locationDetails, name='locationDetails'),
 
     # log details
-    path('logDetails/', views.logDetails, name='logDetails'),
+    path('logDetails/<int:logID>/', views.logDetails, name='logDetails'),
 
     # add new log
     path('newLog/', views.newLog, name='newLog'),

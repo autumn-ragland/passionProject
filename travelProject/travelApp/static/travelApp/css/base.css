@@ -1,15 +1,11 @@
 html, body{
-    height: 90%;
+    height: 100%;
     margin: 1%;
 }
 
 h3{
     align-content: center;
     text-align: center;
-}
-
-#map{
-    height: 80%;
 }
 
 .lat, .long{
@@ -19,4 +15,28 @@ h3{
 
 .json{
     font-size: 1px;
+}
+
+.mapAndLogs{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    height: 80%;
+}
+
+#map{
+    height: 80%;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 1% 1% 0 1%;
+    /*position: fixed;*/
+}
+
+.listLogs{
+    grid-column: 2;
+    grid-row: 1;
+    margin: 1% 1% 0 1%;
+}
+
+.formatSearch{
+    display: inline;
 }

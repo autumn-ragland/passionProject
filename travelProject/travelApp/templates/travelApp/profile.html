@@ -6,15 +6,20 @@
 <hr/>
 
 {% if myLogs %}
-    {% for logs in myLogs %}
-        <p class="locationName">{{logs.location}}</p>
+<div class="mapAndLogs">
+    <div class="listLogs">
+        {% for logs in myLogs %}
+        <a href="{% url 'logDetails' logs.id %}"><p class="locationName">{{logs.location}}</p></a>
         <p>{{logs.summary}}</p>
 
         <p class="lat">{{logs.location_lat}}</p>
         <p class="long">{{logs.location_long}}</p>
         <hr>
-    {% endfor %}
-<div id="map"></div>
+        {% endfor %}
+    </div>
+    <div id="map"></div>
+</div>
+
 {% else %}
     <h3>You have no logs</h3>
 {% endif %}

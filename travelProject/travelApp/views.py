@@ -11,7 +11,11 @@ gmaps = googlemaps.Client(key='AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y')
 
 # landing page
 def index(request):
-    return render(request, 'travelApp/index.html')
+    locationLogs = LocationLog.objects.all()
+    context = {
+        'allLogs': locationLogs
+    }
+    return render(request, 'travelApp/index.html', context)
 
 
 # create new user
@@ -53,7 +57,7 @@ def newLog(request):
                                        accessibility=request.POST['accessibility'],
                                        userModel_fk=current_user)
             # on submit render profile page
-            return redirect('profile')
+            return redirect('index')
         # pass empty log form
         context = {
             'form': form
@@ -70,9 +74,10 @@ def newLog(request):
 
 # list logs (currently lists all logs)
 def myLogs(request):
-    locationLogs = LocationLog.objects.all()
+    current_user = UserModel.objects.get(username=request.user)
+    user_logs = LocationLog.objects.filter(userModel_fk=current_user)
     context = {
-        'myLogs': locationLogs
+        'myLogs': user_logs
     }
     return render(request, 'travelApp/profile.html', context)
 
@@ -81,11 +86,24 @@ def myLogs(request):
 def searchLocation(request):
     searchItem = request.POST['searchBar']
     geocode_result = gmaps.geocode(searchItem)
+    locationLogs = LocationLog.objects.all()
     context = {
         "search": geocode_result,
-        "input": searchItem
+        "input": searchItem,
+        'allLogs': locationLogs
     }
     return render(request, 'travelApp/searchResults.html', context)
+
+
+# log details page
+def logDetails(request, logID):
+    # get entry
+    log = LocationLog.objects.get(pk=logID)
+    # pass entry and related info
+    context = {
+        'log': log,
+    }
+    return render(request, 'travelApp/logDetails.html', context)
 
 
 # todo: Functions below this comment don't work or are very incomplete
@@ -94,11 +112,6 @@ def searchLocation(request):
 # location details page
 def locationDetails(request):
     return render(request, 'travelApp/locationDetails.html')
-
-
-# log details page
-def logDetails(request):
-    return render(request, 'travelApp/logDetails.html')
 
 
 def addMarker(request):

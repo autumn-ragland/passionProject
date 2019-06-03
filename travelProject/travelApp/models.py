@@ -17,8 +17,8 @@ class UserModel(models.Model):
 # location log
 class LocationLog(models.Model):
     location = models.CharField(max_length=500, default='')
-    location_lat = models.IntegerField(default=0)
-    location_long = models.IntegerField(default=0)
+    location_lat = models.FloatField(default=0)
+    location_long = models.FloatField(default=0)
     date_of_visit = models.DateTimeField(default=datetime.today)
     summary = models.TextField(default='')
     safety = models.IntegerField(default=0)

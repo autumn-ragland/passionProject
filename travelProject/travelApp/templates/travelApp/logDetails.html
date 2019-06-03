@@ -1,5 +1,29 @@
 {% extends 'travelApp/base.html' %}
 
 {% block content %}
-<h1>Log Details</h1>
+    <h4>{{ log.location }} Details</h4>
+    <p>
+        By: {{log.userModel_fk.username}}
+    </p>
+    <p>
+        Date of Visit:
+        {{ log.date_of_visit  }}
+    </p>
+    <p>
+        Summary:
+        {{ log.summary }}
+    </p>
+    <p>
+        Saftey:
+        {{ log.safety }}/5
+    </p>
+    <p>
+        Affordability:
+        {{ log.affordability }}/5
+    </p>
+    <p>
+        Accessbility:
+        {{ log.accessibility }}/5
+    </p>
+
 {% endblock %}

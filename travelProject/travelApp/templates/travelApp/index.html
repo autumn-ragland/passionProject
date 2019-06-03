@@ -10,9 +10,41 @@
     <button type="submit" class="btn btn-light btn-sm">Search</button>
 </form>
 
-<div id="map"></div>
+<div class="mapAndLogs">
+
+    <div id="map"></div>
+
+    <div class="listLogs">
+        {% for logs in allLogs %}
+        <a href="{% url 'logDetails' logs.id %}"><p class="locationName">{{logs.location}}</p></a>
+        <p class="lat">{{logs.location_lat}}</p>
+        <p class="long">{{logs.location_long}}</p>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+
 
 <script>
+
+    var long_array = [];
+    var lat_array = [];
+    var location_name = [];
+
+    let locationLong = document.getElementsByClassName("long");
+    for (let i = 0; i < locationLong.length; i++) {
+        long_array.push(parseInt(locationLong[i].innerHTML))
+    }
+
+    let locationLat = document.getElementsByClassName("lat");
+    for (let i = 0; i < locationLat.length; i++) {
+        lat_array.push(parseInt(locationLat[i].innerHTML))
+    }
+
+    let locationName = document.getElementsByClassName("locationName");
+    for (let i = 0; i < locationName.length; i++) {
+        location_name.push(locationName[i].innerHTML)
+    }
 
     function initMap() {
 
@@ -20,26 +52,18 @@
 
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 35.1495, lng: -90.0490},
-            zoom: 15
+            zoom: 4
         });
 
         setMarkers(map)
     }
 
-    myMarkers = [
-        ['Crosstown Concourse', 35.1465, -90.0490],
-        ['Memphis Pyramid', 35.147, -90.050],
-        ['Beale Street', 35.148, -90.048],
-    ];
-
     function setMarkers(map){
-        for (let i = 0; i < myMarkers.length; i++) {
-            let location = myMarkers[i];
+        for (let i = 0; i < lat_array.length; i++) {
             let marker = new google.maps.Marker({
-                position: {lat: location[1], lng: location[2]},
+                position: {lat: lat_array[i], lng: long_array[i]},
                 map: map,
-                title: location[0],
-                draggable: true,
+                title: location_name[i],
             });
         }
     }

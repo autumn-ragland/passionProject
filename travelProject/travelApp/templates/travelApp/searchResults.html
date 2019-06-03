@@ -1,16 +1,54 @@
 {% extends 'travelApp/base.html' %}
 
 {% block content %}
-<h2>Search Results</h2>
-<h4>{{input}}</h4>
 
-<div id="map"></div>
+<h2>Search Results</h2>
+
+<div class="formatSearch">
+    <p>{{input}}</p>
+    <p>Location Latitude:</p>
+    <p id="locationLatitude"></p>
+    <p>Location Longitude</p>
+    <p id="locationLongitude"></p>
+</div>
+
+<div class="mapAndLogs">
+    <div id="map"></div>
+    <div class="listLogs">
+        {% for logs in allLogs %}
+        <a href="{% url 'logDetails' logs.id %}"><p class="locationName">{{logs.location}}</p></a>
+        <p class="lat">{{logs.location_lat}}</p>
+        <p class="long">{{logs.location_long}}</p>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
 
 <p class="json">{{search}}</p>
 
-<a href="{% url 'addMarker' %}">Add A Marker at This Location</a>
+<!--<a href="{% url 'addMarker' %}">Add A Log at This Location</a>-->
 
 <script>
+
+    var long_array = [];
+    var lat_array = [];
+    var location_name = [];
+
+    let locationLong = document.getElementsByClassName("long");
+    for (let i = 0; i < locationLong.length; i++) {
+        long_array.push(parseInt(locationLong[i].innerHTML))
+    }
+
+    let locationLat = document.getElementsByClassName("lat");
+    for (let i = 0; i < locationLat.length; i++) {
+        lat_array.push(parseInt(locationLat[i].innerHTML))
+    }
+
+    let locationame = document.getElementsByClassName("locationName");
+    for (let i = 0; i < locationame.length; i++) {
+        location_name.push(locationame[i].innerHTML)
+    }
+
     let obj = document.getElementsByClassName("json");
     let str = obj[0].innerText;
 
@@ -23,7 +61,12 @@
     var locationName = splitIt[2];
     var lat = numberRe.exec(splitIt[9])[0];
     var long = numberRe.exec(splitIt[11])[0];
-    console.log(lat + long);
+    console.log(lat);
+    console.log(long);
+    var element1 = document.getElementById("locationLatitude");
+    element1.innerHTML=lat;
+    var element2 = document.getElementById("locationLongitude");
+    element2.innerHTML=long;
 
     function initMap() {
 
@@ -34,7 +77,8 @@
             zoom: 15
         });
 
-        setMarkers(map)
+        setMarkers(map);
+        setLogMarkers(map)
     }
     function setMarkers(map){
         let myLatLng = {lat: parseFloat(lat), lng: parseFloat(long)};
@@ -44,6 +88,15 @@
                 map: map,
                 title: locationName,
             })
+    }
+    function setLogMarkers(map){
+        for (let i = 0; i < lat_array.length; i++) {
+            let marker = new google.maps.Marker({
+                position: {lat: lat_array[i], lng: long_array[i]},
+                map: map,
+                title: location_name[i],
+            });
+        }
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y&callback=initMap"
