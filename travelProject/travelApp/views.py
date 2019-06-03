@@ -11,16 +11,7 @@ gmaps = googlemaps.Client(key='AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y')
 
 # landing page
 def index(request):
-    myMarkers = [
-        ['Crosstown Concourse', 35, -90],
-        ['Memphis Pyramid', 36, -89],
-        ['Beale Street', 30, -92]
-    ]
-
-    context = {
-        "myMarkers": myMarkers
-    }
-    return render(request, 'travelApp/index.html', context)
+    return render(request, 'travelApp/index.html')
 
 
 # create new user
