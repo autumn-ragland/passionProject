@@ -74,7 +74,6 @@ def myLogs(request):
     context = {
         'myLogs': locationLogs
     }
-    # print(locationLogs)
     return render(request, 'travelApp/profile.html', context)
 
 
@@ -86,7 +85,6 @@ def searchLocation(request):
         "search": geocode_result,
         "input": searchItem
     }
-    # print(geocode_result)
     return render(request, 'travelApp/searchResults.html', context)
 
 
@@ -103,10 +101,8 @@ def logDetails(request):
     return render(request, 'travelApp/logDetails.html')
 
 
-# absolutely not working
-def find_place(client, input, input_type):
-    params = {"input": input, "inputtype": input_type}
-    return client._request("/maps/api/place/findplacefromtext/json", params)
+def addMarker(request):
+    return HttpResponse('check ad marker at this location')
 
 
 

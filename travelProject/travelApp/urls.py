@@ -23,9 +23,9 @@ urlpatterns = [
     # search bar
     path('searchLocation/', views.searchLocation, name='searchLocation'),
 
-    # todo: routes below this comment don't work
+    # todo: routes below this comment don't work or are not finished
 
-    # places api hit attempt
-    path('find_place/', views.find_place, name='find_place'),
+    # dynamically add a marker from search results
+    path('addMarker/', views.addMarker, name='addMarker')
 
 ]

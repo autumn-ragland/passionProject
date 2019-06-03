@@ -8,6 +8,7 @@
 
 <p class="json">{{search}}</p>
 
+<a href="{% url 'addMarker' %}">Add A Marker at This Location</a>
 
 <script>
     let obj = document.getElementsByClassName("json");
@@ -44,8 +45,6 @@
                 title: locationName,
             })
     }
-
-
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y&callback=initMap"
         async defer></script>

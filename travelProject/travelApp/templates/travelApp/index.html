@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h4>Simple Embedded Map</h4>
+<h4>Safe Travels</h4>
 
 <form class="searchBar" action="{% url 'searchLocation' %}" method="POST">
     {% csrf_token %}
@@ -44,12 +44,8 @@
         }
     }
 
-
-
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y&callback=initMap"
         async defer></script>
-
-<!--<script src="../../static/travelApp/js/testScripts.js"></script>-->
 
 {% endblock %}
