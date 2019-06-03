@@ -83,7 +83,8 @@ def searchLocation(request):
     searchItem = request.POST['searchBar']
     geocode_result = gmaps.geocode(searchItem)
     context = {
-        "search": geocode_result
+        "search": geocode_result,
+        "input": searchItem
     }
     # print(geocode_result)
     return render(request, 'travelApp/searchResults.html', context)
