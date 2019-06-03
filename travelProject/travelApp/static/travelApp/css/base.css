@@ -11,3 +11,12 @@ h3{
 #map{
     height: 80%;
 }
+
+.lat, .long{
+    font-size: 10px;
+    display: inline;
+}
+
+.json{
+    font-size: 1px;
+}

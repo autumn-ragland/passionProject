@@ -83,7 +83,7 @@ def myLogs(request):
     context = {
         'myLogs': locationLogs
     }
-    print(locationLogs)
+    # print(locationLogs)
     return render(request, 'travelApp/profile.html', context)
 
 
@@ -91,7 +91,11 @@ def myLogs(request):
 def searchLocation(request):
     searchItem = request.POST['searchBar']
     geocode_result = gmaps.geocode(searchItem)
-    return HttpResponse(geocode_result)
+    context = {
+        "search": geocode_result
+    }
+    # print(geocode_result)
+    return render(request, 'travelApp/searchResults.html', context)
 
 
 # todo: Functions below this comment don't work or are very incomplete

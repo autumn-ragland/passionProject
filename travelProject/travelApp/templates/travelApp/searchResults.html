@@ -1,0 +1,52 @@
+{% extends 'travelApp/base.html' %}
+
+{% block content %}
+<h2>Search Results</h2>
+
+<div id="map"></div>
+
+<p class="json">{{search}}</p>
+
+
+<script>
+    let obj = document.getElementsByClassName("json");
+    let str = obj[0].innerText;
+
+    let newStr = str.split(',');
+    var myRe = /(formatted_address.+\d},)/;
+    var numberRe = /(-*\d.+\d)/;
+    var newString = myRe.exec(newStr)[0];
+    let splitIt = newString.split("'");
+
+    var locationName = splitIt[2];
+    var lat = numberRe.exec(splitIt[9])[0];
+    var long = numberRe.exec(splitIt[11])[0];
+    console.log(lat + long);
+
+    function initMap() {
+
+        let myLatLng = {lat: parseInt(lat), lng: parseInt(long)};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            zoom: 15
+        });
+
+        setMarkers(map)
+    }
+    function setMarkers(map){
+        let myLatLng = {lat: parseInt(lat), lng: parseInt(long)};
+
+        let marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: locationName,
+            })
+    }
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y&callback=initMap"
+        async defer></script>
+
+{% endblock %}

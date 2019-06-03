@@ -7,12 +7,27 @@
 
 {% if myLogs %}
     {% for logs in myLogs %}
-        <p>Location: {{logs.location}}</p>
-        <p>Summary: {{logs.summary}}</p>
+        <p>{{logs.location}}</p>
+        <p>{{logs.summary}}</p>
+
+        <p class="lat">{{logs.location_lat}}</p>
+        <p class="long">{{logs.location_long}}</p>
         <hr>
     {% endfor %}
 {% else %}
     <h3>You have no logs</h3>
 {% endif %}
+
+<script>
+    let locationLong = document.getElementsByClassName("long");
+    for (let i = 0; i < locationLong.length; i++) {
+        console.log("Longitude: "+ locationLong[i].innerHTML)
+    }
+
+    let locationLat = document.getElementsByClassName("lat");
+    for (let i = 0; i < locationLat.length; i++) {
+        console.log("Latitude: "+locationLat[i].innerHTML)
+    }
+</script>
 
 {% endblock %}
