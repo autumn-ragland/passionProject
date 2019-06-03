@@ -1,9 +1,6 @@
 {% extends 'travelApp/base.html' %}
 
 {% block content %}
-
-<h4>Safe Travels</h4>
-
 <form class="searchBar" action="{% url 'searchLocation' %}" method="POST">
     {% csrf_token %}
     <input type="text" name="searchBar" placeholder="search for a location...">

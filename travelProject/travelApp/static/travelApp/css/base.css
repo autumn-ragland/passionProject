@@ -27,14 +27,15 @@ h3{
     height: 80%;
     grid-column: 1;
     grid-row: 1;
-    margin: 1% 1% 0 1%;
-    /*position: fixed;*/
+    margin: 1% 1% 0 0;
+    position: -webkit-sticky;
+    position: sticky;
 }
 
 .listLogs{
     grid-column: 2;
     grid-row: 1;
-    margin: 1% 1% 0 1%;
+    margin: 0 1% 0 1%;
 }
 
 .formatSearch{

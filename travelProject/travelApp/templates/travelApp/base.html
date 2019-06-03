@@ -10,7 +10,7 @@
 <body>
 <nav>
     {% if request.user.is_authenticated %}
-    <h3>{{request.user}}</h3>
+    <h3>Safe Travels</h3>
     <ul class="nav justify-content-center">
         <li class="nav-item">
             <a class="nav-link" href="{% url 'index' %}">Home</a>
@@ -23,9 +23,8 @@
         </li>
     </ul>
 
-
     {% else %}
-    <h3 class="justify-content-center">Welcome</h3>
+    <h3>Safe Travels</h3>
     <ul class="nav justify-content-center">
 
         <li class="nav-item">
