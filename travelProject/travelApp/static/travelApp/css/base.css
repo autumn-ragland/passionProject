@@ -3,9 +3,41 @@ html, body{
     margin: 1%;
 }
 
-h3{
+nav{
+    border-bottom: rgba(252, 152, 70, 1);
+    padding-bottom: 1%;
+}
+
+li{
+    font-family: 'Quicksand', sans-serif;
+}
+hr{
+    color: rgba(216, 173, 255, 1);
+}
+
+a{
+    font-family: 'Quicksand', sans-serif;
+    color: rgba(216, 173, 255, 1);
+}
+
+button{
+    font-family: 'Quicksand', sans-serif;
+    /*margin: 1%;*/
+}
+
+h2,h4{
+    font-family: 'Quicksand', sans-serif;
+}
+
+h3 {
     align-content: center;
     text-align: center;
+    font-family: 'Ultra', serif;
+    color: rgb(216, 173, 255)
+}
+
+p{
+    font-family: 'Quicksand', sans-serif;
 }
 
 .lat, .long{
