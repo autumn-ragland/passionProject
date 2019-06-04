@@ -1,37 +1,55 @@
 {% extends 'travelApp/base.html' %}
 
 {% block content %}
-    <h4>{{ log.location }} Details</h4>
-    <p>
-        By: {{log.userModel_fk.username}}
-    </p>
-    <p>
-        Date of Visit:
-        {{ log.date_of_visit  }}
-    </p>
-    <p>
-        Summary:
-        {{ log.summary }}
-    </p>
-    <p>
-        Saftey:
-        {{ log.safety }}/5
-    </p>
-    <p>
-        Affordability:
-        {{ log.affordability }}/5
-    </p>
-    <p>
-        Accessbility:
-        {{ log.accessibility }}/5
-    </p>
+<div class="formatDetails">
+
+    <div class="detailsHeader">
+        <h4>{{ log.location }}</h4>
+        <p>
+            By: {{log.userModel_fk.username}}
+        </p>
+    </div>
+
+   <div class="detailsDetails">
+       <p>
+           Date of Visit:
+           {{ log.date_of_visit  }}
+       </p>
+       <p>
+           Summary:
+           {{ log.summary }}
+       </p>
+   </div>
+
+    <div class="detailsRatings">
+        <p>
+            Saftey:
+            {{ log.safety }}/5
+        </p>
+        <p>
+            Affordability:
+            {{ log.affordability }}/5
+        </p>
+        <p>
+            Accessbility:
+            {{ log.accessibility }}/5
+        </p>
+    </div>
+
     {% if request.user.username == log.userModel_fk.username %}
+    <div class="detailsButtons">
         <a href="{% url 'editLog' log.id %}">
             <button type="button" class="btn btn-light">Edit Log</button>
         </a>
         <a href="{% url 'deleteLog' log.id %}">
             <button type="button" class="btn btn-light">Delete Log</button>
         </a>
-
+    </div>
     {% endif %}
+
+
+</div>
+
+
+
 {% endblock %}

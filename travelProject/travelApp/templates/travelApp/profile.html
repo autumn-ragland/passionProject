@@ -3,7 +3,6 @@
 {% block content %}
 <h2>{{ request.user }}'s Travel Log</h2>
 <a href="{% url 'newLog' %}"><button class="btn btn-light">Add a Log</button></a>
-<hr/>
 
 {% if myLogs %}
 <div class="mapAndLogs">

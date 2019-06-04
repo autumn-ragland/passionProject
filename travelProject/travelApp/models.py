@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from datetime import date
 from django.contrib.auth.models import User
 
 
@@ -19,11 +19,11 @@ class LocationLog(models.Model):
     location = models.CharField(max_length=500, default='')
     location_lat = models.FloatField(default=0)
     location_long = models.FloatField(default=0)
-    date_of_visit = models.DateTimeField(default=datetime.today)
+    date_of_visit = models.DateField(default=date.today)
     summary = models.TextField(default='')
-    safety = models.IntegerField(default=0)
-    affordability = models.IntegerField(default=0)
-    accessibility = models.IntegerField(default=0)
+    safety = models.PositiveSmallIntegerField(default=1)
+    affordability = models.PositiveSmallIntegerField(default=1)
+    accessibility = models.PositiveSmallIntegerField(default=1)
     userModel_fk = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):

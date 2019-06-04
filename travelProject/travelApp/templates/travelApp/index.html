@@ -43,13 +43,15 @@
         location_name.push(locationName[i].innerHTML)
     }
 
+    // var image = 'http://dewc.ca/wp-content/uploads/2018/08/symbol.png';
+
     function initMap() {
 
         let myLatLng = {lat: 35, lng: -90};
 
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 35.1495, lng: -90.0490},
-            zoom: 4
+            zoom: 4,
         });
 
         setMarkers(map)
@@ -61,6 +63,7 @@
                 position: {lat: lat_array[i], lng: long_array[i]},
                 map: map,
                 title: location_name[i],
+                // icon: image
             });
         }
     }
