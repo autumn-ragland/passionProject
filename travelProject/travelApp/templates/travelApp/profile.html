@@ -10,7 +10,7 @@
     <div class="listLogs">
         {% for logs in myLogs %}
         <a href="{% url 'logDetails' logs.id %}"><p class="locationName">{{logs.location}}</p></a>
-        <p>{{logs.summary}}</p>
+        <p>{{logs.summary |truncatechars:125}}</p>
 
         <p class="lat">{{logs.location_lat}}</p>
         <p class="long">{{logs.location_long}}</p>

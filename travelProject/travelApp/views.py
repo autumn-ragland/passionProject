@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .forms import UserForm, UserModel, LogForm, LocationLog
@@ -70,6 +70,43 @@ def newLog(request):
         }
     # render new log form page
     return render(request, 'travelApp/newLog.html', context)
+
+
+# edit log
+def editLog(request, logID):
+    # grab log to edit
+    log = get_object_or_404(LocationLog, pk=logID)
+    # populate log form
+    form = LogForm(request.POST or None, instance=log)
+
+    if request.method == 'POST':
+        # on submit save edits
+        form.save()
+        # on submit redirect to my entries page
+        return redirect('myLogs')
+    # pass populated entry form
+    context = {
+        'form': form,
+    }
+    return render(request, 'travelApp/editLog.html', context)
+
+
+# delete log
+def deleteLog(request, logID):
+    # grab specific log
+    log = get_object_or_404(LocationLog, pk=logID)
+
+    if request.method == 'POST':
+        # on submit delete log
+        log.delete()
+        # on submit render my logs page
+        return redirect('myLogs')
+    # pass specific log
+    context = {
+        'log': log
+    }
+    # render confirmation form
+    return render(request, 'travelApp/deleteLog.html', context)
 
 
 # list logs (currently lists all logs)

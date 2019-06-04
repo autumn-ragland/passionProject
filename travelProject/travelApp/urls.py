@@ -20,8 +20,15 @@ urlpatterns = [
     # add new log
     path('newLog/', views.newLog, name='newLog'),
 
+    # edit log
+    path('editLog/<int:logID>', views.editLog, name='editLog'),
+
+    # delete log
+    path('deleteLog/<int:logID>', views.deleteLog, name='deleteLog'),
+
     # search bar
     path('searchLocation/', views.searchLocation, name='searchLocation'),
+
 
     # todo: routes below this comment don't work or are not finished
 
