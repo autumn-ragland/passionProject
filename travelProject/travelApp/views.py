@@ -46,6 +46,14 @@ def newLog(request):
         # determine logged in user
         current_user = UserModel.objects.get(username=request.user)
         if request.method == 'POST':
+
+            # allow a default image/no image selection
+            tempImageFile = request.FILES
+            if not request.FILES:
+                tempImageFile = 'images/tempImage.jpeg'
+            else:
+                tempImageFile = tempImageFile["image"]
+
             # on submit add log to model with logged in user fk
             LocationLog.objects.create(location=request.POST['location'],
                                        location_lat=request.POST['location_lat'],
@@ -55,7 +63,7 @@ def newLog(request):
                                        safety=request.POST['safety'],
                                        affordability=request.POST['affordability'],
                                        accessibility=request.POST['accessibility'],
-                                       image=request.FILES['image'],
+                                       image=tempImageFile,
                                        userModel_fk=current_user)
             # on submit render profile page
             return redirect('index')

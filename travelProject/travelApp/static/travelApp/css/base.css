@@ -26,7 +26,7 @@ a{
 
 button{
     font-family: 'Quicksand', sans-serif;
-    /*margin: 1%;*/
+    margin: 5px;
 }
 
 h2,h4{
@@ -108,6 +108,7 @@ p{
     grid-row: 3;
 }
 .detailImage{
-    grid-column: 1;
-    grid-row: 4;
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 1%;
 }
