@@ -21,7 +21,7 @@ hr{
 
 a{
     font-family: 'Quicksand', sans-serif;
-    color: rgba(186, 186, 186, 1);
+    color: rgb(104, 104, 104);
 }
 
 button{
@@ -106,4 +106,8 @@ p{
 .detailsButtons{
     grid-column: 1;
     grid-row: 3;
+}
+.detailImage{
+    grid-column: 1;
+    grid-row: 4;
 }

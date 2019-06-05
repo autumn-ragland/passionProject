@@ -24,6 +24,7 @@ class LocationLog(models.Model):
     safety = models.PositiveSmallIntegerField(default=1)
     affordability = models.PositiveSmallIntegerField(default=1)
     accessibility = models.PositiveSmallIntegerField(default=1)
+    image = models.ImageField(upload_to='images', null=True, blank=True)
     userModel_fk = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):

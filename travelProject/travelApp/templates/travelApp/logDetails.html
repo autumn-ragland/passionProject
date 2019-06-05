@@ -21,6 +21,14 @@
        </p>
    </div>
 
+    {% if log.image %}
+
+    <div class="detailImage">
+        <img src="{{ log.image.url }}" alt="log image">
+    </div>
+
+    {% endif %}
+
     <div class="detailsRatings">
         <p>
             Saftey:

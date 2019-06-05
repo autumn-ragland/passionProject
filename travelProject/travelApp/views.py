@@ -55,6 +55,7 @@ def newLog(request):
                                        safety=request.POST['safety'],
                                        affordability=request.POST['affordability'],
                                        accessibility=request.POST['accessibility'],
+                                       image=request.FILES['image'],
                                        userModel_fk=current_user)
             # on submit render profile page
             return redirect('index')
@@ -77,7 +78,7 @@ def editLog(request, logID):
     # grab log to edit
     log = get_object_or_404(LocationLog, pk=logID)
     # populate log form
-    form = LogForm(request.POST or None, instance=log)
+    form = LogForm(request.POST or None, request.FILES or None, instance=log)
 
     if request.method == 'POST':
         # on submit save edits
@@ -141,18 +142,6 @@ def logDetails(request, logID):
         'log': log,
     }
     return render(request, 'travelApp/logDetails.html', context)
-
-
-# todo: Functions below this comment don't work or are very incomplete
-
-
-# location details page
-def locationDetails(request):
-    return render(request, 'travelApp/locationDetails.html')
-
-
-def addMarker(request):
-    return HttpResponse('check ad marker at this location')
 
 
 
