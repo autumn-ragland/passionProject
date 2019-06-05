@@ -42,7 +42,7 @@ def newLog(request):
     # for logged in users
     if request.user.is_authenticated:
         # get empty log form
-        form = LogForm(request.POST or None)
+        form = LogForm(request.POST or None, request.FILES or None)
         # determine logged in user
         current_user = UserModel.objects.get(username=request.user)
         if request.method == 'POST':
@@ -50,7 +50,7 @@ def newLog(request):
             # allow a default image/no image selection
             tempImageFile = request.FILES
             if not request.FILES:
-                tempImageFile = 'images/tempImage.jpeg'
+                tempImageFile = '/images/NoImage.png'
             else:
                 tempImageFile = tempImageFile["image"]
 
