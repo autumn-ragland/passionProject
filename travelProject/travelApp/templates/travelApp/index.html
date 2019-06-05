@@ -1,26 +1,26 @@
 {% extends 'travelApp/base.html' %}
 
 {% block content %}
-<form class="searchBar" action="{% url 'searchLocation' %}" method="POST">
-    {% csrf_token %}
-    <input type="text" name="searchBar" placeholder="search for a location...">
-    <button type="submit" class="btn btn-light btn-sm">Search</button>
-</form>
 
-<div class="mapAndLogs">
+    <form class="searchBar" action="{% url 'searchLocation' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="searchBar" placeholder="search for a location...">
+        <button type="submit" class="btn btn-light btn-sm">Search</button>
+    </form>
 
-    <div id="map"></div>
+    <div class="mapAndLogs">
 
-    <div class="listLogs">
-        {% for logs in allLogs %}
-        <a href="{% url 'logDetails' logs.id %}"><p class="locationName">{{logs.location}}</p></a>
-        <p class="lat">{{logs.location_lat}}</p>
-        <p class="long">{{logs.location_long}}</p>
-        <hr>
-        {% endfor %}
+        <div id="map"></div>
+
+        <div class="listLogs">
+            {% for logs in allLogs %}
+            <a href="{% url 'logDetails' logs.id %}"><p class="locationName">{{logs.location}}</p></a>
+            <p class="lat">{{logs.location_lat}}</p>
+            <p class="long">{{logs.location_long}}</p>
+            <hr>
+            {% endfor %}
+        </div>
     </div>
-</div>
-
 
 <script>
 

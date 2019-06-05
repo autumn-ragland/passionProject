@@ -1,10 +1,8 @@
 html, body{
     height: 100%;
     margin: 1%;
-}
-
-body{
-
+    padding-bottom: 1%;
+    /*overflow: hidden;*/
 }
 
 nav{
@@ -13,24 +11,24 @@ nav{
 }
 
 li{
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 hr{
     color: rgba(255, 173, 33, 1);
 }
 
 a{
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: rgb(104, 104, 104);
 }
 
 button{
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: 5px;
 }
 
 h2,h4{
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 h3 {
@@ -41,7 +39,12 @@ h3 {
 }
 
 p{
-    font-family: 'Quicksand', sans-serif;
+
+}
+
+span{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
 }
 
 .lat, .long{
@@ -56,22 +59,22 @@ p{
 .mapAndLogs{
     display: grid;
     grid-template-columns: 3fr 1fr;
-    height: 80%;
+    height: 75%;
+
 }
 
 #map{
-    height: 80%;
+    height: 100%;
     grid-column: 1;
     grid-row: 1;
     margin: 1% 1% 0 0;
-    position: -webkit-sticky;
-    position: sticky;
 }
 
 .listLogs{
     grid-column: 2;
     grid-row: 1;
-    margin: 0 1% 0 1%;
+    margin: 5% 0 0 0;
+    overflow: scroll;
 }
 
 .formatSearch{

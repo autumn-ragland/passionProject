@@ -2,18 +2,20 @@
 
 {% block content %}
 
-<h2>Search Results</h2>
+<h4>Search Results</h4>
 
 <div class="formatSearch">
-    <p>{{input}}</p>
-    <p>Location Latitude:</p>
-    <p id="locationLatitude"></p>
-    <p>Location Longitude</p>
-    <p id="locationLongitude"></p>
+    <p>{{input}} </p>
+    <span>Location Latitude: </span>
+    <span id="locationLatitude"> </span>
+    <span>Location Longitude</span>
+    <span id="locationLongitude"> </span>
 </div>
 
 <div class="mapAndLogs">
-    <div id="map"></div>
+    {% if search %}
+        <div id="map"></div>
+    {% endif %}
     <div class="listLogs">
         {% for logs in allLogs %}
         <a href="{% url 'logDetails' logs.id %}"><p class="locationName">{{logs.location}}</p></a>
@@ -25,7 +27,7 @@
 </div>
 
 <p class="json">{{search}}</p>
-
+<p>{{allLogs}}</p>
 
 <script>
 
@@ -97,6 +99,10 @@
             });
         }
     }
+
+//    if statement to determine some range between search results lat/lng and allLogs lat/lngs
+//    to display all markers within range
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y&callback=initMap"
         async defer></script>

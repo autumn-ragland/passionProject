@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .forms import UserForm, UserModel, LogForm, LocationLog
+from django.db.models import Q
 import googlemaps
 
 
@@ -132,12 +133,16 @@ def myLogs(request):
 def searchLocation(request):
     searchItem = request.POST['searchBar']
     geocode_result = gmaps.geocode(searchItem)
-    locationLogs = LocationLog.objects.all()
+    locationLogs = LocationLog.objects.filter(Q(location__contains=request.POST['searchBar']) |
+                                              Q(summary__contains=request.POST['searchBar']))
+    allLogs = LocationLog.objects.all()
     context = {
         "search": geocode_result,
         "input": searchItem,
-        'allLogs': locationLogs
+        'searchLogs': locationLogs,
+        'allLogs': allLogs
     }
+    # print(locationLogs)
     return render(request, 'travelApp/searchResults.html', context)
 
 
