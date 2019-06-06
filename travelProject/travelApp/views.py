@@ -139,8 +139,9 @@ def searchLocation(request):
     context = {
         "search": geocode_result,
         "input": searchItem,
-        'searchLogs': locationLogs,
-        'allLogs': allLogs
+        # 'searchLogs': locationLogs,
+        # 'allLogs': allLogs
+        'allLogs': locationLogs
     }
     # print(locationLogs)
     return render(request, 'travelApp/searchResults.html', context)

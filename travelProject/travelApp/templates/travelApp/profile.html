@@ -1,7 +1,7 @@
 {% extends 'travelApp/base.html' %}
 
 {% block content %}
-<h2>{{ request.user }}'s Travel Log</h2>
+<h4>{{ request.user }}'s Travel Log</h4>
 <a href="{% url 'newLog' %}"><button class="btn btn-light">Add a Log</button></a>
 
 {% if myLogs %}
@@ -20,7 +20,7 @@
 </div>
 
 {% else %}
-    <h3>You have no logs</h3>
+    <p></p>
 {% endif %}
 
 <script>

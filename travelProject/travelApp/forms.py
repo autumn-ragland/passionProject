@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserModel, LocationLog, LocationRating
+from .models import UserModel, LocationLog
 
 
 # user form to add
