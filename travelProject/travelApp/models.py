@@ -31,6 +31,7 @@ class LocationLog(models.Model):
         return self.location
 
 
+# todo NEVER USED
 # location rating
 class LocationRating(models.Model):
     rating = models.IntegerField(default=0)

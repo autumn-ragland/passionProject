@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .forms import UserForm, UserModel, LogForm, LocationLog
 from django.db.models import Q
@@ -10,12 +9,15 @@ import googlemaps
 gmaps = googlemaps.Client(key='AIzaSyAcVeR1EcysjeZr4eQE_mtiJ6suMxXY52Y')
 
 
-# landing page
+# home page
 def index(request):
+    # grab all logs
     locationLogs = LocationLog.objects.all()
+    # pass all logs
     context = {
         'allLogs': locationLogs
     }
+    # render home page
     return render(request, 'travelApp/index.html', context)
 
 
@@ -66,7 +68,7 @@ def newLog(request):
                                        accessibility=request.POST['accessibility'],
                                        image=tempImageFile,
                                        userModel_fk=current_user)
-            # on submit render profile page
+            # on submit render home page
             return redirect('index')
         # pass empty log form
         context = {
@@ -92,7 +94,7 @@ def editLog(request, logID):
     if request.method == 'POST':
         # on submit save edits
         form.save()
-        # on submit redirect to my entries page
+        # on submit redirect to my logs page
         return redirect('myLogs')
     # pass populated entry form
     context = {
@@ -119,9 +121,11 @@ def deleteLog(request, logID):
     return render(request, 'travelApp/deleteLog.html', context)
 
 
-# list logs (currently lists all logs)
+# list logs
 def myLogs(request):
+    # grab current user
     current_user = UserModel.objects.get(username=request.user)
+    # grab logs by current user
     user_logs = LocationLog.objects.filter(userModel_fk=current_user)
     context = {
         'myLogs': user_logs
@@ -131,8 +135,11 @@ def myLogs(request):
 
 # search bar submit form
 def searchLocation(request):
+    # grab user search
     searchItem = request.POST['searchBar']
+    # search google api
     geocode_result = gmaps.geocode(searchItem)
+    # search my models
     locationLogs = LocationLog.objects.filter(Q(location__contains=request.POST['searchBar']) |
                                               Q(summary__contains=request.POST['searchBar']))
     allLogs = LocationLog.objects.all()
@@ -143,15 +150,13 @@ def searchLocation(request):
         # 'allLogs': allLogs
         'allLogs': locationLogs
     }
-    # print(locationLogs)
     return render(request, 'travelApp/searchResults.html', context)
 
 
 # log details page
 def logDetails(request, logID):
-    # get entry
+    # get specific log
     log = LocationLog.objects.get(pk=logID)
-    # pass entry and related info
     context = {
         'log': log,
     }
