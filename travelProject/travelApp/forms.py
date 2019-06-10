@@ -1,4 +1,5 @@
 from django import forms
+from datetime import date
 from .models import UserModel, LocationLog
 
 
@@ -33,3 +34,9 @@ class LogForm(forms.ModelForm):
         if accessibility_data > 5:
             raise forms.ValidationError('Choose a number between 0 and 5')
         return accessibility_data
+
+    def clean_date_of_visit(self):
+        date_of_visit_data = self.cleaned_data['date_of_visit']
+        if date_of_visit_data > date.today():
+            raise forms.ValidationError('Choose a valid date')
+        return date_of_visit_data
