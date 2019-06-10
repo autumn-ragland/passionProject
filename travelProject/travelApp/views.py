@@ -42,21 +42,20 @@ def newUser(request):
 
 # create a new log
 def newLog(request):
-    # for logged in users
-    if request.user.is_authenticated:
-        # get empty log form
-        form = LogForm(request.POST or None, request.FILES or None)
-        # determine logged in user
-        current_user = UserModel.objects.get(username=request.user)
-        if request.method == 'POST':
+    # get empty log form
+    form = LogForm(request.POST or None, request.FILES or None)
+    # determine logged in user
+    current_user = UserModel.objects.get(username=request.user)
 
-            # allow a default image/no image selection
-            tempImageFile = request.FILES
-            if not request.FILES:
-                tempImageFile = '/images/NoImage.png'
-            else:
-                tempImageFile = tempImageFile["image"]
+    if request.method == 'POST':
+        # allow a default image/no image selection
+        tempImageFile = request.FILES
+        if not request.FILES:
+            tempImageFile = '/images/NoImage.png'
+        else:
+            tempImageFile = tempImageFile["image"]
 
+        if form.is_valid():
             # on submit add log to model with logged in user fk
             LocationLog.objects.create(location=request.POST['location'],
                                        location_lat=request.POST['location_lat'],
@@ -70,16 +69,17 @@ def newLog(request):
                                        userModel_fk=current_user)
             # on submit render home page
             return redirect('index')
-        # pass empty log form
-        context = {
-            'form': form
-        }
-    # for users not logged in
-    else:
-        form = ''
-        context = {
-            'form': form
-        }
+
+        else:
+            context = {
+                'errors': form.errors,
+                'form': form,
+            }
+            return render(request, 'travelApp/newLog.html', context)
+
+    context = {
+        'form': form
+    }
     # render new log form page
     return render(request, 'travelApp/newLog.html', context)
 
@@ -92,10 +92,11 @@ def editLog(request, logID):
     form = LogForm(request.POST or None, request.FILES or None, instance=log)
 
     if request.method == 'POST':
-        # on submit save edits
-        form.save()
-        # on submit redirect to my logs page
-        return redirect('myLogs')
+        if form.is_valid():
+            # on submit save edits
+            form.save()
+            # on submit redirect to my logs page
+            return redirect('myLogs')
     # pass populated entry form
     context = {
         'form': form,
