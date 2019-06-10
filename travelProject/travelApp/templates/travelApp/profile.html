@@ -3,6 +3,7 @@
 {% block content %}
 <h4>{{ request.user }}'s Travel Log</h4>
 <a href="{% url 'newLog' %}"><button class="btn btn-light">Add a Log</button></a>
+<a href="{% url 'viewFavorites' request.user.username %}"><button class="btn btn-light">View Favorites</button></a>
 
 {% if myLogs %}
 <div class="mapAndLogs">

@@ -41,6 +41,12 @@
         </p>
     </div>
 
+    <div>
+        <a href="{% url 'favoriteLogs' log.id request.user.username %}">
+            <button type="button" class="btn btn-light">Favorite Log</button>
+        </a>
+    </div>
+
     {% if request.user.username == log.userModel_fk.username %}
     <div class="detailsButtons">
         <a href="{% url 'editLog' log.id %}">

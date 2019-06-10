@@ -134,6 +134,28 @@ def myLogs(request):
     return render(request, 'travelApp/profile.html', context)
 
 
+# todo: alter model to allow for favoriting
+# favorite a log
+def favoriteLogs(request, logID, userID):
+    logs = LocationLog.objects.all()
+    context = {
+        'log': logID,
+        'user': userID
+    }
+    return render(request, 'travelApp/favoriteLogs.html', context)
+
+
+# todo: filter logs to favorite
+# view all favorited logs
+def viewFavorites(request, userID):
+    logs = LocationLog.objects.all()
+    context = {
+        'logs': logs
+    }
+    return render(request, 'travelApp/viewFavorites.html', context)
+
+
+# todo: refine search
 # search bar submit form
 def searchLocation(request):
     # grab user search
