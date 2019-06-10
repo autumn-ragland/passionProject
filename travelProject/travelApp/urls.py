@@ -26,7 +26,7 @@ urlpatterns = [
 
     # favorite log
     path('favoriteLogs/<int:logID>/<slug:userID>', views.favoriteLogs, name='favoriteLogs'),
-    path('viewFavorites/<int:userID>', views.viewFavorites, name='viewFavorites'),
+    path('viewFavorites/<slug:userID>', views.viewFavorites, name='viewFavorites'),
 
     # search bar
     path('searchLocation/', views.searchLocation, name='searchLocation'),

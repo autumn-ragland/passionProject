@@ -31,12 +31,11 @@ class LocationLog(models.Model):
         return self.location
 
 
-# todo NEVER USED
-# location rating
-class LocationRating(models.Model):
-    rating = models.IntegerField(default=0)
+# log favorite
+class LocationFavorite(models.Model):
+    favorite = models.BooleanField(default=False)
+    userModel_fk = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True, blank=True)
     locationModel_fk = models.ForeignKey(LocationLog, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.rating
-
+        return self.favorite

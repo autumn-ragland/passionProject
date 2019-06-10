@@ -1,6 +1,11 @@
 {% extends 'travelApp/base.html' %}
 
 {% block content %}
-<p>Log ID {{og}}</p>
-<p>User {{user}}</p>
+<form method="POST">
+    {% csrf_token %}
+    <h4>Are you sure you want to favorite {{ log.locationModel_fk.location }}?</h4>
+    <button type="submit" class="btn btn-light">Yes</button>
+</form>
+
+<a href="{% url 'index' %}"><button class="btn btn-light">Back to Home</button></a>
 {% endblock %}

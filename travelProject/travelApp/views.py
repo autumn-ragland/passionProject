@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .forms import UserForm, UserModel, LogForm, LocationLog
+from .models import LocationFavorite
 from django.db.models import Q
 import googlemaps
 
@@ -137,11 +138,20 @@ def myLogs(request):
 # todo: alter model to allow for favoriting
 # favorite a log
 def favoriteLogs(request, logID, userID):
-    logs = LocationLog.objects.all()
+    if request.method == 'POST':
+        # on submit favorite log
+        LocationFavorite.objects.create(
+            favorite=request.POST[True],
+            userModel_fk=request.POST[userID],
+            locationModel_fk=request.POST[logID]
+        )
+        # on submit render index page
+        return redirect('index')
+    # pass specific log
     context = {
-        'log': logID,
-        'user': userID
+        'log': logID
     }
+    # render confirmation form
     return render(request, 'travelApp/favoriteLogs.html', context)
 
 
