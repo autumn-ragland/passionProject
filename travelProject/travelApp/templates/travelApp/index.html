@@ -4,7 +4,7 @@
 
     <form class="searchBar" action="{% url 'searchLocation' %}" method="POST">
         {% csrf_token %}
-        <input type="text" name="searchBar" placeholder="search for a location...">
+        <input type="text" name="searchBar" required placeholder="search for a location...">
         <button type="submit" class="btn btn-light btn-sm">Search</button>
     </form>
 
