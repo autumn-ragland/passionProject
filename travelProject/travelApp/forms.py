@@ -16,10 +16,10 @@ class LogForm(forms.ModelForm):
         model = LocationLog
         exclude = ['userModel_fk']
 
-    # multi image
-    def multi_images(self):
-        # super().multi_images()
-        self.fields['image'].widget.attrs.update({'multiple': True})
+    # todo: multi image
+    # def multi_images(self):
+    #     super().multi_images()
+    #     self.fields['image'].widget.attrs.update({'multiple': True})
 
     # validation
     def clean_safety(self):
